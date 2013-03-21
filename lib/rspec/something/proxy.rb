@@ -7,7 +7,7 @@ module Rspec
         @double = _double
       end
 
-      # set double expectation at first method invocation
+      # set expectation to double at first method invocation
       # and return double itself.
       #
       def method_missing(name, *args)

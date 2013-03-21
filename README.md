@@ -4,7 +4,7 @@ Something expects one message in your example.
 
 ## What is this?
 
-Without rspec-something
+Without rspec-something:
 
 ```ruby
 mail = double
@@ -12,7 +12,7 @@ mail.should_receive :deliver
 UserMailer.should_receive(:hello).and_return mail
 ```
 
-With rspec-something
+With rspec-something:
 
 ```ruby
 UserMailer.should_receive(:hello).and_return something.deliver
