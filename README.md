@@ -1,4 +1,4 @@
-# rspec-something [![Build Status](https://travis-ci.org/fujimura/rspec-something.png)](https://travis-ci.org/fujimura/rspec-something)
+# rspec-something [![Build Status](https://github.com/fujimura/rspec-something/actions/workflows/ci.yml/badge.svg)](https://github.com/fujimura/rspec-something/actions/workflows/ci.yml)
 
 Something expects one message in your example.
 
@@ -8,14 +8,14 @@ Without rspec-something:
 
 ```ruby
 mail = double
-mail.should_receive :deliver
-UserMailer.should_receive(:hello).and_return mail
+expect(mail).to receive(:deliver)
+expect(UserMailer).to receive(:hello).and_return mail
 ```
 
 With rspec-something:
 
 ```ruby
-UserMailer.should_receive(:hello).and_return something.deliver
+expect(UserMailer).to receive(:hello).and_return something.deliver
 ```
 
 Congrats. You saved two lines.
@@ -33,6 +33,20 @@ And then execute:
 Or install it yourself as:
 
     $ gem install rspec-something
+
+## Usage
+
+Require and include matcher:
+
+```ruby
+require 'rspec/something'
+
+RSpec.configure do |config|
+  config.include RSpec::Something
+end
+```
+
+See example in "What is this?" section for actual usage.
 
 ## Contributing
 
