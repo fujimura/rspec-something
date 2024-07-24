@@ -11,8 +11,15 @@ module Rspec
       # and return double itself.
       #
       def method_missing(name, *args)
-        (should_be_received? ? @double.should_receive(name) : @double.should_not_receive(name))
-        .tap {|o| o.with(*args) unless args.empty? }
+        receive = RSpec::Mocks::Matchers::Receive.new(name, nil)
+        receive.with(*args) unless args.empty?
+
+        target = RSpec::Mocks::ExpectationTarget.new(@double)
+        if should_be_received?
+          target.to(receive)
+        else
+          target.not_to(receive)
+        end
 
         @double
       end
